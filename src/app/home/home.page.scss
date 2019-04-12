@@ -1,0 +1,30 @@
+ion-content {
+  --background: #fff url("../../assets/fondo.jpg") no-repeat center center / cover;
+}
+
+.logo{
+  width: 60%;
+  padding-top: 150px;
+}
+
+.body{
+  text-align: center;
+}
+
+.content{
+  padding-top: 180px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.sign-up{
+  background-color: rgba($color: #DF393A, $alpha: 0);
+  color: white;
+  font-weight: bold;
+}
+
+.login{
+  background-color: #FFFFFF;
+  color: #DF393A;
+  font-weight: bold;
+}

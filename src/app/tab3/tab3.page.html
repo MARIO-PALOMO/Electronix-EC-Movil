@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar color="danger" style="text-align: center">
+    <ion-title>
+      <img src="assets/logo-header.png" style="width: 40%">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="images">
+    <img src="{{lstCliente.foto}}" class="w3-circle" width="100" height="100">
+    <br>
+    <span style="font-weight: bold; color: #FFFFFF; font-size: 15px">{{lstCliente.nombre}}</span>
+    <br>
+    <span style="color: #FFFFFF; font-size: 13px">{{usuario.usuario.rol}}</span>
+  </div>
+
+
+
+  <button class="w3-button w3-black" (click)="cerrarSesion()">Cerrar Sesión</button>
+</ion-content>

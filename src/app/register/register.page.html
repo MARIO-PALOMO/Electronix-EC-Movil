@@ -1,0 +1,23 @@
+<ion-content padding class="body">
+  <img src="assets/red-logo.png" alt="ELECTRONIX" class="logo">
+  <div class="content">
+
+    <label class="labels">Nombre</label>
+    <input [(ngModel)]="cliente.nombre" class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="email" placeholder="Ingresar Nombre Completo">
+    <br>
+    <label class="labels">Correo Electrónico</label>
+    <input [(ngModel)]="usuario.email" class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="email" placeholder="Ingresar Correo Electrónico">
+    <br>
+    <label class="labels">Contraseña</label>
+    <input [(ngModel)]="usuario.contrasena" class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="password" placeholder="Ingresar Contraseña">
+    <br>
+    <button class="w3-button w3-border w3-border-red w3-padding-large w3-round-xxlarge w3-block login" (click)="registrarUsuario()">Registrate</button>
+    <br>
+    <div class="w3-border-top" style="width: 100%">&nbsp;</div>
+    
+    <div style="text-align: center;">
+      <a routerLink="/" style="color: #df393a">Volver al Inicio</a>
+    </div>
+  </div>
+
+</ion-content>

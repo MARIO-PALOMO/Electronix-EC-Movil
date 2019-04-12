@@ -1,0 +1,7 @@
+{
+  "name": "Electronix",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

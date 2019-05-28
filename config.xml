@@ -19,6 +19,7 @@
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="3000" />
+    <preference name="orientation" value="portrait" />
     <preference name="TwitterConsumerKey" value="72X6IeacczJZU7uANxcO50LSs" />
     <preference name="TwitterConsumerSecret" value="sze6hKQMu6wL1CqjTKqdwcrpT6ehiqD9yhetR89BADf1f87j74" />
     <platform name="android">

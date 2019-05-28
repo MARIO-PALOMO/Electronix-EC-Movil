@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
 import { LoginService } from './../directives/login/login.service';
 import { ApiService } from '../service/conexion/api.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { FingerPrintComponent } from './finger-print/finger-print.component';
+import { ProfilePage } from './profile/profile.page';
+import { TarjetasPage } from './tarjetas/tarjetas.page';
 
 @Component({
   selector: 'app-tab3',
@@ -11,31 +14,56 @@ import { AlertController } from '@ionic/angular';
 export class Tab3Page {
 
   public usuario: any;
-  public lstCliente = [];
-  public cliente = {
-    identificacion: "",
-    nombre: "",
-    telefono: "",
-    direccion: "",
-    foto: "",
-    fotoLugar: "",
-  }
+  public lstCliente: any = [];
 
-  constructor(private validacion: LoginService, private conexion: ApiService, private alertController: AlertController){
+  constructor(private validacion: LoginService, private conexion: ApiService, private alertController: AlertController, private modalController: ModalController) {
     this.usuario = JSON.parse(this.validacion.obtenerDatos());
     this.obtenerDatosCliente();
-    console.log(this.usuario);
   }
 
-  public cerrarSesion(){
+  public cerrarSesion() {
     this.validacion.cerrarSesion();
   }
 
+  public async modalHuellasDigitales() {
+    const modal = await this.modalController.create({
+      component: FingerPrintComponent,
+      componentProps: { clientId: this.usuario.usuario.idCliente, username: this.usuario.usuario.email },
+      cssClass: 'modal-finger'
+    });
+    return await modal.present();
+  }
+
+  public async modalPerfil() {
+    const modal = await this.modalController.create({
+      component: ProfilePage,
+      componentProps: { cliente: this.lstCliente, token: this.usuario.token }
+    });
+
+    modal.onDidDismiss().then((data: any) => {
+      if (data.data.valor) {
+        this.obtenerDatosCliente();
+      }
+    }).catch((error)=> {
+      //console.log(error);
+    });
+
+    return await modal.present();
+  }
+
+  public async modalTarjetas() {
+    const modal = await this.modalController.create({
+      component: TarjetasPage,
+      componentProps: { idCliente: this.usuario.usuario.idCliente, token: this.usuario.token }
+    });
+
+    return await modal.present();
+  }
+
   public obtenerDatosCliente() {
-    this.conexion.get("buscarCliente?idCliente="+ this.usuario.usuario.idCliente, this.usuario.token).subscribe(
+    this.conexion.get("buscarCliente?idCliente=" + this.usuario.usuario.idCliente, this.usuario.token).subscribe(
       (res: any) => {
         this.lstCliente = res[0];
-        console.log(this.lstCliente);
       }, err => {
         console.log(err);
         this.mostrarAlerta("ELECTRONIX", "Error Servidor", "No se logró conectar con el servidor de datos.");

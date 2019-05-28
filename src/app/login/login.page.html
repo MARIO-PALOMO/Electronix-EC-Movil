@@ -3,23 +3,34 @@
   <div class="content">
 
     <label class="labels">Correo Electrónico</label>
-    <input [(ngModel)]="usuario.email" class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="email" placeholder="Ingresar Correo Electrónico">
+    <input [(ngModel)]="usuario.email"
+      class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="email"
+      placeholder="Ingresar Correo Electrónico">
     <br>
     <label class="labels">Contraseña</label>
-    <input [(ngModel)]="usuario.contrasena" class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="password" placeholder="Ingresar Contraseña">
+    <input [(ngModel)]="usuario.contrasena"
+      class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="password"
+      placeholder="Ingresar Contraseña">
     <br>
-    <button class="w3-button w3-border w3-border-red w3-padding-large w3-round-xxlarge w3-block login" (click)="iniciarSesionElectronix()">Ingresa</button>
+    <button class="w3-button w3-border w3-border-red w3-padding-large w3-round-xxlarge w3-block login"
+      (click)="iniciarSesionElectronix()">Ingresa</button>
     <br>
     <div class="w3-border-top" style="width: 100%">&nbsp;</div>
-    <button class="w3-button w3-blue w3-round-xxlarge" (click)="iniciarSesionFacebook()" style="width: 45%; float: left;">
+    <button class="w3-button w3-blue w3-round-xxlarge" (click)="iniciarSesionFacebook()"
+      style="width: 45%; float: left;">
       <ion-icon name="logo-facebook" style="font-size: 24px"></ion-icon>
     </button>
-    <button class="w3-button w3-cyan w3-round-xxlarge" (click)="inicioSesionTwitter()" style="width: 45%; float: right;">
-        <ion-icon name="logo-twitter" style="font-size: 24px; color: white"></ion-icon>
+    <button class="w3-button w3-cyan w3-round-xxlarge" (click)="inicioSesionTwitter()"
+      style="width: 45%; float: right;">
+      <ion-icon name="logo-twitter" style="font-size: 24px; color: white"></ion-icon>
     </button>
     <br><br><br>
     <div style="text-align: center;">
       <a routerLink="/" style="color: #df393a">Volver al Inicio</a>
+    </div>
+    <br>
+    <div *ngIf="verificarHuella_" style="text-align: center" (click)="obtenerHuellaDactilar()">
+      <ion-icon name="md-finger-print" color="medium" style="font-size: 50px"></ion-icon>
     </div>
   </div>
 

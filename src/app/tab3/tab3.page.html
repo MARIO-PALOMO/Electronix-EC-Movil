@@ -1,21 +1,70 @@
 <ion-header>
   <ion-toolbar color="danger" style="text-align: center">
     <ion-title>
-      <img src="assets/logo-header.png" style="width: 40%">
+      <img src="assets/logo-header.png" style="width: 140px">
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="images">
-    <img src="{{lstCliente.foto}}" class="w3-circle" width="100" height="100">
+  <div class="container-images">
+    <img src="{{lstCliente.foto}}" class="w3-circle w3-border" width="100" height="100">
     <br>
     <span style="font-weight: bold; color: #FFFFFF; font-size: 15px">{{lstCliente.nombre}}</span>
     <br>
     <span style="color: #FFFFFF; font-size: 13px">{{usuario.usuario.rol}}</span>
   </div>
-
-
-
-  <button class="w3-button w3-black" (click)="cerrarSesion()">Cerrar Sesión</button>
+  <div padding class="container-options">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="4">
+          <img src="assets/user-details/shopping-cart.png" width="50">
+        </ion-col>
+        <ion-col size="4" (click)="modalTarjetas()">
+          <img src="assets/user-details/credit-card.png" width="50">
+        </ion-col>
+        <ion-col size="4" (click)="modalPerfil()">
+          <img src="assets/user-details/edit-user.png" width="50">
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="w3-container container-detail">
+    <br>
+    <ul class="w3-ul w3-card-4 w3-round-large" style="text-align: left">
+      <li>
+        <span class="w3-large"><img src="assets/user-details/user.png" width="27">&nbsp;&nbsp;&nbsp;&nbsp;
+          {{lstCliente.nombre}}</span>
+      </li>
+      <li>
+        <span class="w3-large"><img src="assets/user-details/identification.png" width="27">&nbsp;&nbsp;&nbsp;&nbsp;
+          {{lstCliente.identificacion}}</span>
+      </li>
+      <li>
+        <span class="w3-large"><img src="assets/user-details/address.png" width="27">&nbsp;&nbsp;&nbsp;&nbsp;
+          {{lstCliente.direccion}}</span>
+      </li>
+      <li>
+        <span class="w3-large"><img src="assets/user-details/phone.png" width="27">&nbsp;&nbsp;&nbsp;&nbsp;
+          {{lstCliente.telefono}}</span>
+      </li>
+      <li>
+        <span class="w3-large"><img src="assets/user-details/email.png" width="27">&nbsp;&nbsp;&nbsp;&nbsp;
+          {{usuario.usuario.email}}</span>
+      </li>
+    </ul>
+  </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger">
+      <ion-icon name="ios-arrow-dropup"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="cerrarSesion()">
+        <ion-icon name="md-exit"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="modalHuellasDigitales()">
+        <ion-icon name="ios-finger-print"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

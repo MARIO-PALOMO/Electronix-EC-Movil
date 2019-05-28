@@ -1,0 +1,19 @@
+<ion-content padding>
+  <div class="container-title">
+    Acceso Biométrico
+  </div>
+  <div style="text-align: center">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" *ngIf="anadirHuella" (click)="escanearHuellaDactilar()">
+          <img src="assets/finger-print-add.png" width="50"><br>
+          <span style="font-size: 10px">Activar Huella Digital</span>
+        </ion-col>
+        <ion-col size="12" *ngIf="eliminarHuella" (click)="eliminarHuellaDactilar()">
+          <img src="assets/finger-print-delete.png" width="50"><br>
+          <span style="font-size: 10px">Eliminar Huella Digital</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

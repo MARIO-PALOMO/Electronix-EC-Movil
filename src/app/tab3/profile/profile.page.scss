@@ -1,0 +1,30 @@
+ion-content {
+  --background: url("https://firebasestorage.googleapis.com/v0/b/electronix-ec.appspot.com/o/Varios%2FfondoWhite.jpg?alt=media&token=62ae1161-af4d-4eb2-9622-3d722d0ffe12")
+    no-repeat center center / cover;
+}
+.inputs {
+  background-color: rgba($color: #df393a, $alpha: 0);
+  color: #3a3a3a;
+  font-weight: bold;
+}
+
+.labels {
+  color: #df393a;
+  font-weight: bold;
+}
+
+.sign-up {
+  background-color: rgba($color: #df393a, $alpha: 0.9);
+  color: white;
+  font-weight: bold;
+}
+
+.title{
+  background-color: rgba($color: #ffffff, $alpha: 0.7);
+  color: #df393a;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-top: 12px;
+  text-align: center;
+  font-size: 17px;
+}

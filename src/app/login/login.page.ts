@@ -5,6 +5,8 @@ import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
 import { TwitterConnect } from '@ionic-native/twitter-connect/ngx';
 import { LoginService } from '../directives/login/login.service';
 import { ApiService } from '../service/conexion/api.service';
+import { AndroidFingerprintAuth } from '@ionic-native/android-fingerprint-auth/ngx';
+import { FingerPrintService } from '../directives/fingerPrint/finger-print.service';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +19,54 @@ export class LoginPage implements OnInit {
     email: "",
     contrasena: ""
   }
+  public verificarHuella_ = false;
 
-  constructor(private fb: Facebook, private tw: TwitterConnect, private conexion: ApiService, private validacion: LoginService, public alertController: AlertController, private router: Router) { }
+  constructor(private fb: Facebook, private tw: TwitterConnect, private conexion: ApiService,
+    private validacion: LoginService, public alertController: AlertController, private router: Router,
+    private androidFingerprintAuth: AndroidFingerprintAuth, private fingerPrint: FingerPrintService) { }
 
   ngOnInit() {
+    this.verificarCredenciales();
+    this.verificarHuellaDigital();
+  }
+
+  public verificarCredenciales() {
+    if (localStorage.getItem("Electronix-EC") != null) {
+      this.router.navigate(['/electronix/tienda/productos']);
+    }
+  }
+
+  public verificarHuellaDigital() {
+    var huella = this.fingerPrint.obtenerDatosHuellaDactilar();
+    if (huella != null) {
+      this.verificarHuella_ = true;
+    } else {
+      this.verificarHuella_ = false;
+    }
+  }
+
+  public obtenerHuellaDactilar() {
+    var datos = JSON.parse(this.fingerPrint.obtenerDatosHuellaDactilar());
+    this.androidFingerprintAuth.decrypt(datos).then(result => {
+
+      if (result.withFingerprint) {
+        this.verificarUsuario(datos.username).then((res) => {
+          var idUsuario = res;
+          this.buscarUsuario(idUsuario).then((res) => {
+            this.validacion.iniciarSesion(res);
+          });
+        });
+      } else if (result.withBackup) {
+        this.verificarUsuario(datos.username).then((res) => {
+          var idUsuario = res;
+          this.buscarUsuario(idUsuario).then((res) => {
+            this.validacion.iniciarSesion(res);
+          });
+        });
+      }
+    }).catch(error => {
+      this.mostrarAlerta("Acceso Biométrico", " ", "" + JSON.stringify(error));
+    });
   }
 
   public iniciarSesionElectronix() {
@@ -32,15 +78,15 @@ export class LoginPage implements OnInit {
       this.mostrarAlerta("ELECTRONIX", "", "Ingresar una dirección de correo electrónico válida.");
     } else if (this.usuario.contrasena == "") {
       this.mostrarAlerta("ELECTRONIX", "", "Ingresar una contraseña.");
-    }else{
+    } else {
       this.conexion.post("login", this.usuario, "").subscribe(
         (res: any) => {
           if (res == false) {
             this.mostrarAlerta("ELECTRONIX", "", "Las credenciales ingresadas son incorrectas, o no es un cliente registrado.");
           } else {
-            if(res.usuario.rol == "CLIENTE"){
+            if (res.usuario.rol == "CLIENTE") {
               this.validacion.iniciarSesion(res);
-            }else{
+            } else {
               this.mostrarAlerta("ELECTRONIX", "", "Las credenciales ingresadas no pertenecen a un cliente, verifiquelas nuevamente.");
             }
           }
@@ -48,7 +94,7 @@ export class LoginPage implements OnInit {
         },
         err => {
           console.log(err);
-          this.mostrarAlerta("ELECTRONIX", "Error Servidor", "No se logró conectar con el servidor de datos.");
+          this.mostrarAlerta("ELECTRONIX", "Error Servidor", "No se logró conectar con el servidor de datos. " +JSON.stringify(err));
         }
       );
     }

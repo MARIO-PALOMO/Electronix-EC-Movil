@@ -13,14 +13,14 @@ export class LoginService {
   cerrarSesion() {
     localStorage.removeItem('Electronix-EC');
     this.fb.logout().then((res) => {
-      alert(res);
+      console.log(res);
     }, err => {
-      alert(err);
+      console.log(err);
     });
     this.tw.logout().then((res) => {
-      alert(res);
+      console.log(res);
     }, err => {
-      alert(err);
+      console.log(err);
     });
     this.router.navigate(["/electronix/login"]);
   }

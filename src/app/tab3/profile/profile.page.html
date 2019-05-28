@@ -1,0 +1,43 @@
+<ion-header (click)="cerrarModal()">
+  <ion-toolbar color="danger" style="text-align: center">
+    <ion-buttons slot="start">
+      <ion-icon name="ios-arrow-back" style="font-size: 28px"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      <img src="assets/logo-header.png" style="width: 140px">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="title">
+    <span>Perfil Cliente</span>
+  </div>
+  <div padding>
+    <form [formGroup]="clienteForm" (ngSubmit)="actualizarDatos($val)">
+      <label class="labels">Nombre</label>
+      <input formControlName="nombre"
+        class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="text"
+        placeholder="Ingresar Nombre Completo">
+      <br>
+      <label class="labels">Identificación</label>
+      <input formControlName="identificacion"
+        class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="text"
+        placeholder="Ingresar Número de Identificación">
+      <br>
+      <label class="labels">Dirección</label>
+      <textarea formControlName="direccion"
+        class="w3-input w3-border w3-border-gray w3-padding w3-round-xlarge w3-block inputs" type="text"
+        placeholder="Ingresar Dirección" rows="2"></textarea>
+      <br>
+      <label class="labels">Teléfono</label>
+      <input formControlName="telefono"
+        class="w3-input w3-border w3-border-gray w3-padding w3-round-xxlarge w3-block inputs" type="text"
+        placeholder="Ingresar Número Telefónico">
+      <br><br>
+      <button type="submit"
+        class="w3-button w3-border w3-border-red w3-padding-large w3-round-xxlarge w3-block sign-up">Actualizar</button>
+    </form>
+  </div>
+
+</ion-content>

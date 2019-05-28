@@ -88,6 +88,21 @@ ion-header{
   font-family: 'Montserrat', sans-serif;
 }
 
+.modal-finger {
+  ion-backdrop {
+    visibility: visible !important;
+  }
+  .modal-wrapper {
+    border-radius: 10px 10px 0px 0px;
+    overflow: hidden;
+    top: 80%;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+  }
+}
+
 .alert-accept{
   background-color: #df393a !important;
   color: #ffffff !important;

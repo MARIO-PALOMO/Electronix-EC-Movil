@@ -17,11 +17,24 @@ ion-content {
   text-align: left;
 }
 
-.images{
+.container-images {
   background-color: rgba($color: #df393a, $alpha: 1);
   text-align: center;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding-bottom: 6px;
+  padding-top: 15px;
+}
+
+.container-options {
+  background-color: rgba($color: #ffffff, $alpha: 0.5);
+  text-align: center;
+  padding-bottom: 1px;
+  padding-top: 1px;
+}
+
+.container-detail {
+  background-color: rgba($color: #ffffff, $alpha: 0.3);
+  text-align: center;
+  font-size: 18px;
 }
 
 .inputs {

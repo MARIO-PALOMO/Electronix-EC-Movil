@@ -11,6 +11,13 @@ export class HomePage implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit() {
+    this.verificarCredenciales();
+  }
+
+  verificarCredenciales() {
+    if (localStorage.getItem("Electronix-EC") != null) {
+      this.router.navigate(['/electronix/tienda/productos']);
+    }
   }
 
   public iniciarSesion(){
